@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Simple Todo List App{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+<div class="list-group">
+    {% for todo in todos %}
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-4" aria-current="true">
+        <div class="d-flex gap-2 w-100">
+            <h3 class="mb-0">{{ todo.name }}</h3>
+        </div>
+        <i class="bi {% if todo.done %}bi-check-circle-fill{% else %}bi-circle{% endif %} text-success update-todo"
+            style="font-size: 25px; cursor: pointer;" class="" data-id="{{ todo.id }}">
+        </i>
+        <i class="bi bi-x-circle text-danger delete-todo" style="font-size: 25px; cursor: pointer;"
+            data-id="{{ todo.id }}">
+        </i>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
